@@ -1,6 +1,6 @@
 /* PHYSOON 2.0 */
 /* Authors:
-* Sean Widmier, Tyrell Jamison, Colin Oberthur, Lorraine Rosello
+* Sean Widmier, Tyrell Jemison, Colin Oberthur, Lorraine Rosello
 */
 /* Includes */
 #include <asf.h>
