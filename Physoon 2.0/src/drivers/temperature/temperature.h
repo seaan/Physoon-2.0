@@ -1,15 +1,15 @@
 /*
- * temperature.h
+ * Temperature.h
  *
- * Created: 11/8/2016 8:24:07 PM
- *  Author: swidmier
+ * Created: 4/20/2017 7:05:24 PM
+ *  Author: Lorraine Rosello, Tyrell Jemison, Tommy Tran
  */ 
-#include <asf.h>
+
 
 #ifndef TEMPERATURE_H_
 #define TEMPERATURE_H_
 
-float getTemperature(void);
+
 
 
 
