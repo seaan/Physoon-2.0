@@ -59,7 +59,7 @@ static const uint32_t VALID_POS_TIMEOUT = 2000;  // ms
 static int32_t next_aprs = 0;
 
 
-void setup()
+void radio_setup()
 {
   pinMode(LED_PIN, OUTPUT);
   pin_write(LED_PIN, LOW);

@@ -78,7 +78,7 @@ ax25_send_byte(uint8_t a_byte)
   // Wrap around send_byte, but prints debug info
   send_byte(a_byte);
 #ifdef DEBUG_AX25
-  Serial.print((char)a_byte);
+  //Serial.print((char)a_byte);
 #endif
 }
 
@@ -141,7 +141,7 @@ ax25_send_header(const struct s_address *addresses, int num_addresses)
 
 #ifdef DEBUG_AX25
   // Print source callsign
-  Serial.println();
+  /*Serial.println();
   Serial.print('[');
   Serial.print(millis());
   Serial.print("] ");
@@ -166,7 +166,7 @@ ax25_send_header(const struct s_address *addresses, int num_addresses)
     }
   }
   Serial.print(':');
-#endif
+#endif*/
 }
 
 void 
@@ -183,7 +183,7 @@ ax25_send_footer()
   // Signal the end of frame
   ax25_send_flag();
 #ifdef DEBUG_AX25
-  Serial.println();
+  //Serial.println();
 #endif
 }
 
@@ -194,5 +194,3 @@ ax25_flush_frame()
   afsk_send(packet, packet_size);
   afsk_start();
 }
-
-

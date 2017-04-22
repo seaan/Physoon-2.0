@@ -84,18 +84,12 @@ void afsk_timer_setup()
   // pin.
   
   // Source timer2 from clkIO (datasheet p.164)
-  ASSR &= ~(_BV(EXCLK) | _BV(AS2));
+  //ASSR &= ~(_BV(EXCLK) | _BV(AS2)); //NOT sure if we need to actually do this or not
   
   // Set fast PWM mode with TOP = 0xff: WGM22:0 = 3  (p.150)
   // This allows 256 cycles per sample and gives 16M/256 = 62.5 KHz PWM rate
   
   TCC0.CTRLB |= 0b10000011; //Set this to FAST PWM, AKA single slope PWM for the XMEGA by inputting 101 to the end of the register.
-  TCCR2B &= ~_BV(WGM22); //Only using one audio pin, so we only gotta do one of these famalamadingdong
-  
-  // No prescaler (p.162)
-  TCCR2B = (TCCR2B & ~(_BV(CS22) | _BV(CS21))) | _BV(CS20);
-  // prescaler x8 for slow-mo testing
-  //TCCR2B = (TCCR2B & ~(_BV(CS22) | _BV(CS20))) | _BV(CS21);
 
   // Set initial pulse width to the rest position (0v after DC decoupling)
   OC0 = REST_DUTY;
@@ -105,10 +99,11 @@ void afsk_timer_start()
 {
   // Clear the overflow flag, so that the interrupt doesn't go off
   // immediately and overrun the next one (p.163).
-  TIFR2 |= _BV(TOV2);       // Yeah, writing a 1 clears the flag.
+  TCC0.INTFLAG |= 1;       // Yeah, writing a 1 clears the flag.
 
   // Enable interrupt when TCNT2 reaches TOP (0xFF) (p.151, 163)
-  TIMSK2 |= _BV(TOIE2);
+  TCC0.INTCTRLA = TC_OVFINTLVL_HI_gc; //Enable interrupts using the timer counter.
+  PMIC.CTRL = PMIC_HILVLEN_bm | PMIC_LOLVLEN_bm; //Enable high level interrupts.
 }
 
 void afsk_timer_stop()
@@ -117,7 +112,7 @@ void afsk_timer_stop()
   OC0 = REST_DUTY;
 
   // Disable playback interrupt
-  TIMSK2 &= ~_BV(TOIE2);
+  TCC0.INTCTRLA = TC_OVFINTLVL_HI_gc; //Disable interrupts using the timer counter.
 }
 
 

@@ -111,7 +111,7 @@
 // --------------------------------------------------------------------------
 
 // This is the PTT pin
-#define PTT_PIN           4
+#define PTT_PIN           33
 
 // --------------------------------------------------------------------------
 // Sensors config (sensors.cpp)
@@ -222,6 +222,7 @@
 // #define DEBUG_SENS   // Sensors
 
 #define _BV(bit) (1 << (bit))
+
 
 
 #endif

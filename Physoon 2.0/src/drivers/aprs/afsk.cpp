@@ -132,7 +132,7 @@ inline static uint8_t afsk_fifo_out_safe()
 void afsk_setup()
 {
   // Start radio
-  radio.setup();
+  radio_setup();
 }
 
 void afsk_send(const uint8_t *buffer, int len)
@@ -156,7 +156,7 @@ void afsk_start()
   afsk_timer_setup();
 
   // Key the radio
-  radio.ptt_on();
+  radio_ptt_on();
   
   // Start transmission
   afsk_timer_start();
@@ -172,7 +172,7 @@ bool afsk_flush()
     if (go == false) {
       if (afsk_is_fifo_empty_safe()) {
         afsk_timer_stop();  // Disable modem
-        radio.ptt_off();    // Release PTT
+        radio_ptt_off();    // Release PTT
         return false;       // Done
       } else {
         return true;

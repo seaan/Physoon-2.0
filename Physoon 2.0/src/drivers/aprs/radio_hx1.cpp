@@ -25,7 +25,7 @@
 #endif
 
 
-void RadioHx1::setup()
+void radio_setup()
 {
   // Configure pins
   pinMode(PTT_PIN, OUTPUT);
@@ -33,13 +33,13 @@ void RadioHx1::setup()
   pinMode(AUDIO_PIN, OUTPUT);
 }
 
-void RadioHx1::ptt_on()
+void radio_ptt_on()
 {
   pin_write(PTT_PIN, HIGH);
-  delay(25);   // The HX1 takes 5 ms from PTT to full RF, give it 25
+  delay_ms(25);   // The HX1 takes 5 ms from PTT to full RF, give it 25
 }
 
-void RadioHx1::ptt_off()
+void radio_ptt_off()
 {
   pin_write(PTT_PIN, LOW);
 }

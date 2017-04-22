@@ -55,17 +55,17 @@ inline void afsk_clear_interrupt_flag()
 }
 
 #ifdef DEBUG_MODEM
-inline uint16_t afsk_timer_counter()
+inline uint16_t afsk_timer_counter() //No idea what this does or if it is even necessary, lol.
 {
-  uint16_t t = TCNT2;
-  if ((TIFR2 & _BV(TOV2)) && t < 128)
+  uint16_t t = TCC0.CNTL; //CNTL is the low register *might need high register instead, need to test.*
+  if ((TCC0.INTFLAG & 1) && t < 128) //1 is the overflow value tihngy
     t += 256;
   return t;
 }
 
 inline int afsk_isr_overrun()
 {
-  return (TIFR2 & _BV(TOV2));
+  return (TCC0.INTFLAG & 1);
 }
 #endif
 
