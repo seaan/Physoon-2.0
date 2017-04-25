@@ -237,7 +237,7 @@ static inline enum sleepmgr_mode sleepmgr_get_sleep_mode(void)
  * mode, until the first non-zero lock count is found. The device is then put to
  * sleep in the sleep mode that corresponds to the lock.
  *
- * \note This function enables interrupts before going to sleep, and will leave
+ * \note This function enables Enable_global_interrupt before going to sleep, and will leave
  * them enabled upon return. This also applies if sleep is skipped due to ACTIVE
  * mode being locked.
  */
@@ -256,7 +256,7 @@ static inline void sleepmgr_enter_sleep(void)
 		cpu_irq_enable();
 		return;
 	}
-	// Enter the deepest allowable sleep mode with interrupts enabled
+	// Enter the deepest allowable sleep mode with Enable_global_interrupt enabled
 	sleepmgr_sleep(sleep_mode);
 #else
 	cpu_irq_enable();

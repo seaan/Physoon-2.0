@@ -52,12 +52,18 @@
  * running the ASF driver selector tool. Any changes will be discarded.
  */
 
+// From module: AC - Analog Comparator
+#include <ac.h>
+
 // From module: ADC - XMEGA A/AU Implementation
 #include <adc.h>
 
 // From module: CPU specific features
 #include <ccp.h>
 #include <xmega_reset_cause.h>
+
+// From module: Delay routines
+#include <delay.h>
 
 // From module: GPIO - General purpose Input/Output
 #include <gpio.h>
@@ -80,6 +86,13 @@
 // From module: Part identification macros
 #include <parts.h>
 
+// From module: SPI - Serial Peripheral Interface
+#include <spi.h>
+
+// From module: SPI - XMEGA implementation
+#include <spi_master.h>
+#include <spi_master.h>
+
 // From module: Sleep Controller driver
 #include <sleep.h>
 
@@ -87,11 +100,17 @@
 #include <sleepmgr.h>
 #include <xmega/sleepmgr.h>
 
+// From module: Standard serial I/O (stdio) - XMEGA implementation
+#include <stdio_serial.h>
+
 // From module: System Clock Control - XMEGA A1/A3/A3B/A4/D/E implementation
 #include <sysclk.h>
 
 // From module: TC - Timer Counter
 #include <tc.h>
+
+// From module: USART - Serial interface - XMEGA implementation
+#include <serial.h>
 
 // From module: USART - Universal Synchronous/Asynchronous Receiver/Transmitter
 #include <usart.h>

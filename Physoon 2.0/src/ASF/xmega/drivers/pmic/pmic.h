@@ -58,8 +58,8 @@
  * Multilevel Interrupt Controller.
  *
  * \note If these functions are used in interrupt service routines (ISRs), any
- * non-ISR code or ISR code for lower level interrupts must ensure that the
- * operations are atomic, i.e., by disabling interrupts during the function
+ * non-ISR code or ISR code for lower level Enable_global_interrupt must ensure that the
+ * operations are atomic, i.e., by disabling Enable_global_interrupt during the function
  * calls.
  * @{
  */
@@ -71,11 +71,11 @@
  * disabled.
  */
 enum pmic_level {
-	PMIC_LVL_LOW    = PMIC_LOLVLEN_bm,    //!< Low-level interrupts
-	PMIC_LVL_MEDIUM = PMIC_MEDLVLEN_bm,   //!< Medium-level interrupts
-	PMIC_LVL_HIGH   = PMIC_HILVLEN_bm,    //!< High-level interrupts
+	PMIC_LVL_LOW    = PMIC_LOLVLEN_bm,    //!< Low-level Enable_global_interrupt
+	PMIC_LVL_MEDIUM = PMIC_MEDLVLEN_bm,   //!< Medium-level Enable_global_interrupt
+	PMIC_LVL_HIGH   = PMIC_HILVLEN_bm,    //!< High-level Enable_global_interrupt
 	/**
-	 * \brief Non-maskable interrupts
+	 * \brief Non-maskable Enable_global_interrupt
 	 * \note These cannot be enabled nor disabled.
 	 */
 	PMIC_LVL_NMI    = PMIC_NMIEX_bp,
@@ -108,7 +108,7 @@ static inline void pmic_init(void)
 }
 
 /**
- * \brief Enable interrupts with specified \a level(s).
+ * \brief Enable Enable_global_interrupt with specified \a level(s).
  *
  * \param level Interrupt level(s) to enable.
  */
@@ -120,7 +120,7 @@ static inline void pmic_enable_level(enum pmic_level level)
 }
 
 /**
- * \brief Disable interrupts with specified \a level(s).
+ * \brief Disable Enable_global_interrupt with specified \a level(s).
  *
  * \param level Interrupt level(s) to disable.
  */
@@ -169,7 +169,7 @@ static inline bool pmic_level_is_executing(enum pmic_level level)
 }
 
 /**
- * \brief Set interrupt scheduling for low-level interrupts.
+ * \brief Set interrupt scheduling for low-level Enable_global_interrupt.
  *
  * \param schedule Interrupt scheduling method to set.
  *
@@ -241,14 +241,14 @@ static inline void pmic_set_vector_location(enum pmic_vector vector)
  * - all interrupt levels enabled
  * - round-robin scheduling
  * 
- * This will allow for interrupts from other modules being used.
+ * This will allow for Enable_global_interrupt from other modules being used.
  *
  * \section pmic_basic_use_case_setup Setup steps
  *
  * \subsection pmic_basic_use_case_setup_prereq Prerequisites
  * For the setup code of this use case to work, the following must
  * be added to the project:
- * -# Interrupts for the module requiring the PMIC module have to be 
+ * -# Enable_global_interrupt for the module requiring the PMIC module have to be 
  *    enabled.
  * -# An Interrupt Service Routine (ISR) for a given interrupt vector has to be 
  *    defined, where the interrupt vectors available are defined by toolchain and 
@@ -272,9 +272,9 @@ static inline void pmic_set_vector_location(enum pmic_vector vector)
  *   - \code pmic_init(); \endcode
  * -# enable round-robin instead of fixed priority interrupt scheduling:
  *   - \code pmic_set_scheduling(PMIC_SCH_ROUND_ROBIN); \endcode
- * -# enable interrupts globally:
+ * -# enable Enable_global_interrupt globally:
  *   - \code cpu_irq_enable(); \endcode
- *   - \attention Interrupts will not trigger without this step.
+ *   - \attention Enable_global_interrupt will not trigger without this step.
  *
  * \section pmic_use_cases Advanced use cases
  * For more advanced use of the PMIC driver, see the following use cases:
@@ -287,7 +287,7 @@ static inline void pmic_set_vector_location(enum pmic_vector vector)
  * In this use case, the PMIC is configured for:
  * - all interrupt levels enabled
  * 
- * This will allow for interrupts from other modules being used.
+ * This will allow for Enable_global_interrupt from other modules being used.
  *
  * This use case shows how to make an operation which consists of multiple
  * instructions uninterruptible, i.e., into an atomic operation. This is often
@@ -299,7 +299,7 @@ static inline void pmic_set_vector_location(enum pmic_vector vector)
  * \subsection pmic_basic_use_case_setup_prereq Prerequisites
  * For the setup code of this use case to work, the following must
  * be added to the project:
- * -# Interrupts for the module requiring the PMIC module have to be 
+ * -# Enable_global_interrupt for the module requiring the PMIC module have to be 
  *    enabled.
  * -# An Interrupt Service Routine (ISR) for a given interrupt vector has to be 
  *    defined, where the interrupt vectors available are defined by toolchain and 

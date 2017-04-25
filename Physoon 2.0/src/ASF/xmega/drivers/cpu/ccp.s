@@ -51,7 +51,7 @@
 	 * to implement it twice than to deal with the differences
 	 * within a single implementation.
 	 *
-	 * Interrupts are disabled by hardware during the timed
+	 * Enable_global_interrupt are disabled by hardware during the timed
 	 * sequence, so there's no need to save/restore interrupt state.
 	 */
 
