@@ -120,7 +120,7 @@ static inline void nvm_exec(void)
  * execute command by writing the CMDEX bit to the NVM.CTRLA register.
  *
  * \note The function saves and restores the NVM.CMD register, but if this
- *       function is called from an interrupt, interrupts must be disabled
+ *       function is called from an interrupt, Enable_global_interrupt must be disabled
  *       before this function is called.
  *
  * \param nvm_command NVM Command to execute.
@@ -143,7 +143,7 @@ static inline void nvm_issue_command(NVM_CMD_t nvm_command)
  * specified byte address with the LPM instruction. NVM_CMD is restored after
  * use.
  *
- * \note Interrupts should be disabled before running this function
+ * \note Enable_global_interrupt should be disabled before running this function
  *       if program memory/NVM controller is accessed from ISRs.
  *
  * \param nvm_cmd NVM command to load before running LPM
@@ -159,7 +159,7 @@ uint8_t nvm_read_byte(uint8_t nvm_cmd, uint16_t address);
  * This function sets the specified NVM_CMD, sets CCP and then runs the SPM
  * instruction to write to flash.
  *
- * \note Interrupts should be disabled before running this function
+ * \note Enable_global_interrupt should be disabled before running this function
  *       if program memory/NVM controller is accessed from ISRs.
  *
  * \param addr Address to perform the SPM on.
@@ -181,8 +181,8 @@ void nvm_common_spm(uint32_t addr, uint8_t nvm_cmd);
  * - Reading device serial
  *
  * \note Some of these functions are modifying the NVM.CMD register.
- *       If the application are using program space access in interrupts
- *       (__flash pointers in IAR EW or pgm_read_byte in GCC) interrupts
+ *       If the application are using program space access in Enable_global_interrupt
+ *       (__flash pointers in IAR EW or pgm_read_byte in GCC) Enable_global_interrupt
  *       needs to be disabled when running EEPROM access functions. If not,
  *       the program space reads will be corrupted. See documentation for
  *       each individual function.
@@ -257,8 +257,8 @@ struct nvm_device_serial {
  * at the given address.
  *
  * \note This function is modifying the NVM.CMD register.
- *       If the application are using program space access in interrupts
- *       (__flash pointers in IAR EW or pgm_read_byte in GCC) interrupts
+ *       If the application are using program space access in Enable_global_interrupt
+ *       (__flash pointers in IAR EW or pgm_read_byte in GCC) Enable_global_interrupt
  *       needs to be disabled when running EEPROM access functions. If not
  *       the program space reads will be corrupted.
  *
@@ -276,8 +276,8 @@ static inline uint8_t nvm_read_production_signature_row(uint8_t address)
  * at the given address.
  *
  * \note This function is modifying the NVM.CMD register.
- *       If the application are using program space access in interrupts
- *       (__flash pointers in IAR EW or pgm_read_byte in GCC) interrupts
+ *       If the application are using program space access in Enable_global_interrupt
+ *       (__flash pointers in IAR EW or pgm_read_byte in GCC) Enable_global_interrupt
  *       needs to be disabled when running EEPROM access functions. If not
  *       the program space reads will be corrupted.
  *
@@ -333,8 +333,8 @@ void nvm_read_device_serial(struct nvm_device_serial *storage);
  * EEPROM.
  *
  * \note The functions in this module are modifying the NVM.CMD register.
- *       If the application are using program space access in interrupts
- *       (__flash pointers in IAR EW or pgm_read_byte in GCC) interrupts
+ *       If the application are using program space access in Enable_global_interrupt
+ *       (__flash pointers in IAR EW or pgm_read_byte in GCC) Enable_global_interrupt
  *       needs to be disabled when running EEPROM access functions. If not
  *       the program space reads will be corrupted.
  * @{
@@ -438,8 +438,8 @@ void nvm_eeprom_erase_all(void);
  *       the boot section in the make file.
  *
  * \note The functions in this module are modifying the NVM.CMD register.
- *       If the application are using program space access in interrupts
- *       (__flash pointers in IAR EW or pgm_read_byte in GCC) interrupts
+ *       If the application are using program space access in Enable_global_interrupt
+ *       (__flash pointers in IAR EW or pgm_read_byte in GCC) Enable_global_interrupt
  *       needs to be disabled when running EEPROM access functions. If not
  *       the program space reads will be corrupted.
  * @{
@@ -793,8 +793,8 @@ static inline void nvm_flash_write_user_page(void)
  * Both fuses and lock bits are reprogrammable like the Flash Program memory.
  *
  * \note The functions in this module are modifying the NVM.CMD register.
- *       If the application are using program space access in interrupts
- *       (__flash pointers in IAR EW or pgm_read_byte in GCC) interrupts
+ *       If the application are using program space access in Enable_global_interrupt
+ *       (__flash pointers in IAR EW or pgm_read_byte in GCC) Enable_global_interrupt
  *       needs to be disabled when running EEPROM access functions. If not
  *       the program space reads will be corrupted.
  * @{

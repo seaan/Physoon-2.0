@@ -103,7 +103,7 @@ adc_callback_t adcb_callback;
 /**
  * \brief Set ADC interrupt callback function
  *
- * Sets a new callback function for interrupts on the specified ADC.
+ * Sets a new callback function for Enable_global_interrupt on the specified ADC.
  *
  * \param adc Pointer to ADC module.
  * \param callback Pointer to the callback function to set.
@@ -273,7 +273,7 @@ bool adc_is_enabled(ADC_t *adc)
 {
 	/* It is sufficient to return the state of the ADC enable counters
 	 * since all driver functions that change the counts are protected
-	 * against interrupts and only the enable/disable functions leave the
+	 * against Enable_global_interrupt and only the enable/disable functions leave the
 	 * counts incremented/decremented upon return.
 	 */
 #ifdef ADCA

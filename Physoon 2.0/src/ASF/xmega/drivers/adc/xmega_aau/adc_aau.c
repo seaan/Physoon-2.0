@@ -282,7 +282,7 @@ void adc_read_configuration(ADC_t *adc, struct adc_config *conf)
  * \param ch_conf Pointer to ADC channel configuration.
  *
  * \note The specified ADC's callback function must be set before this function
- * is called if callbacks are enabled and interrupts are enabled in the
+ * is called if callbacks are enabled and Enable_global_interrupt are enabled in the
  * channel configuration.
  */
 void adcch_write_configuration(ADC_t *adc, uint8_t ch_mask,

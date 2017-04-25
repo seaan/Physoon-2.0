@@ -61,7 +61,7 @@
 /**
  * \defgroup interrupt_group Global interrupt management
  *
- * This is a driver for global enabling and disabling of interrupts.
+ * This is a driver for global enabling and disabling of Enable_global_interrupt.
  *
  * @{
  */
@@ -87,12 +87,12 @@
 
 /**
  * \def cpu_irq_enable
- * \brief Enable interrupts globally
+ * \brief Enable Enable_global_interrupt globally
  */
 
 /**
  * \def cpu_irq_disable
- * \brief Disable interrupts globally
+ * \brief Disable Enable_global_interrupt globally
  */
 
 /**
@@ -103,7 +103,7 @@
  *
  * \return Current state of interrupt flags.
  *
- * \note This function leaves interrupts disabled.
+ * \note This function leaves Enable_global_interrupt disabled.
  */
 
 /**
@@ -117,18 +117,18 @@
 
 /**
  * \fn bool cpu_irq_is_enabled_flags(irqflags_t flags)
- * \brief Check if interrupts are globally enabled in supplied flags
+ * \brief Check if Enable_global_interrupt are globally enabled in supplied flags
  *
  * \param flags Currents state of interrupt flags.
  *
- * \return True if interrupts are enabled.
+ * \return True if Enable_global_interrupt are enabled.
  */
 
 /**
  * \def cpu_irq_is_enabled
- * \brief Check if interrupts are globally enabled
+ * \brief Check if Enable_global_interrupt are globally enabled
  *
- * \return True if interrupts are enabled.
+ * \return True if Enable_global_interrupt are enabled.
  */
 //@}
 
