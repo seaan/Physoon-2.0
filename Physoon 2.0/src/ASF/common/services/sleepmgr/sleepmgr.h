@@ -82,7 +82,7 @@ extern "C" {
  *
  * It is based on the use of lock counting for the individual sleep modes, and
  * will put the device to sleep in the shallowest sleep mode that has a non-zero
- * lock count. The drivers/services/application can change these counts by use
+ * lock count. The driver/services/application can change these counts by use
  * of \ref sleepmgr_lock_mode and \ref sleepmgr_unlock_mode.
  * Refer to \ref sleepmgr_mode for a list of the sleep modes available for
  * locking, and the device datasheet for information on their effect.

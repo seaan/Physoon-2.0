@@ -64,7 +64,7 @@ extern "C" {
 #   ifdef __ICCAVR__
 #     define SCAN   reserved_0x06
 #   else
-#     define SCAN   reserved_0x6
+#     define SCAN   reserved_0x06
 #   endif
 # endif
 #endif

@@ -4,8 +4,7 @@
  * Class to hold altitude computation functions.
  *
  */ 
-#include "drivers/altitude/altitude.h"
-#include <asf.h>
+#include "driver/driver.h"
 #include <math.h>
 /*********************************************************************************/
 							/* Altitude Methods */

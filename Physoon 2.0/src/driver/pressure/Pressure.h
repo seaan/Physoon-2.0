@@ -9,12 +9,13 @@
 #ifndef PRESSURE_H_
 #define PRESSURE_H_
 
- float getPressure();
- uint8_t spi_read();
+ int32_t getPressure(void);
+ uint8_t spi_read(void);
  void spi_write(uint8_t data);
- void spi_select();
- void spi_deselect();
- void calibrate_pressure();
+ void spi_select(void);
+ void spi_deselect(void);
+ void spi_init(void);
+ void calibrate_pressure(void);
 
 
 

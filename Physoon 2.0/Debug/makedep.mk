@@ -14,15 +14,21 @@ src\ASF\xmega\drivers\ac\ac.c
 
 src\ASF\xmega\drivers\spi\spi.c
 
+src\ASF\xmega\drivers\twi\twim.c
+
+src\ASF\xmega\drivers\twi\twis.c
+
 src\driver\altitude\altitude.c
 
 src\driver\data\data.c
 
-src\driver\geiger\geiger_counter.c
+src\driver\gps\gps.c
+
+src\driver\gps\stringring.c
+
+src\driver\LED\LEDs.c
 
 src\driver\pressure\Pressure.c
-
-src\driver\temperature\ADCinit.c
 
 src\driver\temperature\Temperature.c
 
@@ -43,8 +49,6 @@ src\ASF\xmega\drivers\cpu\ccp.s
 src\ASF\xmega\drivers\nvm\nvm.c
 
 src\ASF\xmega\drivers\nvm\nvm_asm.s
-
-src\ASF\xmega\drivers\tc\tc.c
 
 src\ASF\xmega\drivers\usart\usart.c
 

@@ -4,8 +4,8 @@
  * Class to hold geiger counter functions, each of which collects data from their respective counters.
  *
  */ 
-#include "drivers/data/data.h"
-#include <asf.h>
+#include "driver/driver.h"
+#include "config/conf_usart_serial.h"
 #include <string.h>
 #include <stdio.h>
 /*********************************************************************************/
@@ -19,9 +19,9 @@ void data_Init(void){
 		.stopbits = false
 	};
 	
-	usart_tx_enable(&USARTC0); //enable transmit (TX) pin for USART on Port C **Change port
-	PORTF.DIR = 0b00000100; //input for pin 3
-	usart_serial_init(&USARTF0,&usart_options); //initialize USART on port C from function above
+	usart_tx_enable(&USARTD0); //enable transmit (TX) pin for USART on Port D
+	PORTD.DIR = 0b00000100; //input for pin 3
+	usart_serial_init(&USARTD0,&usart_options); //initialize USART on port D from struct
 }
 void saveData(uint32_t timestamp, uint16_t alpha_geiger, uint16_t beta_geiger, uint16_t gamma_geiger, float altitude){ //this shit is justa complete guess right now lol
 	// From Daniel: 

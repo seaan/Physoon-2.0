@@ -9,8 +9,8 @@
 #ifndef TEMPERATURE_H_
 #define TEMPERATURE_H_
 
-
-
+ void ADCinit(void);
+ float getTemperature(void);
 
 
 #endif /* TEMPERATURE_H_ */
