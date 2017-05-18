@@ -9,7 +9,7 @@
 
  void ADCinit(void)
  {
-	 ADCA.CTRLA = 0b00000010; //Enables the ADC
+	 ADCA.CTRLA = 0b00000001; //Enables the ADC
 	 ADCA.CTRLB = 0b00000000; //Sets ADC to unsigned int mode
 	 ADCA.REFCTRL = 0b00010000; //Voltage reference of Vcc/1.6V
 	 ADCA.PRESCALER = 0b00000101; //Automatic clock prescaler of 128
