@@ -87,7 +87,7 @@ int main (void){
 	//printf("test2\n");
 	/* Insert application code here, after the board has been initialized. */
 	while(1){
-		printf("%" PRId32 "\n", getPressure());
+		printf("%" PRId16 "\n", getTemperature());
 		delay_s(10);
 		printf("Test\n");
 		

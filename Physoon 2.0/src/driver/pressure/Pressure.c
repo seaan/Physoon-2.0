@@ -24,14 +24,14 @@
 	 //get D1:
 	
 	spi_select(); //select the spi device
-	spi_write(0b1001000); //write to the spi device. using OSR 4096
+	spi_write(0x48); //write to the spi device. using OSR 4096
 	spi_deselect(); //Deselect the device
 	delay_ms(10);
 	
 	
 	
 	spi_select();
-	spi_write(0b0000000); //Just resets some stuff
+	spi_write(0x00); //Just resets some stuff
 	uint32_t D1 = ((uint32_t)spi_read())<<16; //Type cast to 16 bit data, then bit shift to left 8 places
 	D1 += ((uint32_t)spi_read())<<8; //Type cast to 16 bit data and add to the lower 8 bits of the variable data
 	D1 += ((uint32_t)spi_read());
@@ -47,16 +47,16 @@
 	delay_ms(10);
 	spi_select();
 	spi_write(0x00);
-	D2 = ((uint32_t)spi_read()<<16);
+	D2 = ((uint32_t)spi_read())<<16;
 	D2+=((uint32_t)spi_read()<<8);
 	D2 += ((uint32_t)spi_read());
 	spi_deselect();
 	
 	printf("THING2 %" PRIu32"\n", D2);
 	int32_t dT = D2 - (cal_pres_c5 * pow(2,8));
-	printf("TEMP %" PRIu32 "\n", dT);
+	//printf("TEMP %" PRIu32 "\n", dT);
 	int32_t temp = 2000 + (dT * (cal_pres_c6/pow(2,23)));
-	//printf("TEMP %" PRIu32 "\n", temp);
+	printf("REALTEMP %" PRIu32 "\n", temp);
 	int64_t OFF = (cal_pres_c2 * pow(2,17)) + ((cal_pres_c4*dT)/pow(2,6));
 	int64_t sens = (cal_pres_c1*pow(2, 16)) + ((cal_pres_c3*dT)/pow(2,7));
 	int32_t Pressure = ((D1*sens/pow(2,21))-OFF)/pow(2,15);
@@ -71,49 +71,50 @@
 	//calibrate c1:
 	spi_select();
 	spi_write(0b10100010);
-	cal_pres_c1 = ((uint16_t)spi_read()<<8);
+	cal_pres_c1 = ((uint16_t)spi_read())<<8;
 	cal_pres_c1 += ((uint16_t)spi_read());
 	spi_deselect();
-	printf("c1: %lu\n",cal_pres_c1);
+	printf("c1: %u\n",cal_pres_c1);
+	
 	//calibrate c2:
 	spi_select();
 	spi_write(0b10100100);
-	cal_pres_c2 = ((uint16_t)spi_read()<<8);
+	cal_pres_c2 = ((uint16_t)spi_read())<<8;
 	cal_pres_c2 += ((uint16_t)spi_read());
 	spi_deselect();
-	printf("c2: %lu \n",cal_pres_c2);
+	printf("c2: %u \n",cal_pres_c2);
 	
 	//calibrate c3:
 	spi_select();
 	spi_write(0b10100110);
-	cal_pres_c3 = ((uint16_t)spi_read()<<8);
+	cal_pres_c3 = ((uint16_t)spi_read())<<8;
 	cal_pres_c3 += ((uint16_t)spi_read());
 	spi_deselect();
-	printf("c3: %lu \n",cal_pres_c3);
+	printf("c3: %u \n",cal_pres_c3);
 	
 	//calibrate c4:
 	spi_select();
 	spi_write(0b10101000);
-	cal_pres_c4 = ((uint16_t)spi_read()<<8);
+	cal_pres_c4 = ((uint16_t)spi_read())<<8;
 	cal_pres_c4 += ((uint16_t)spi_read());
 	spi_deselect();
-	printf("c4: %lu \n",cal_pres_c4);
+	printf("c4: %u \n",cal_pres_c4);
 	
 	//calibrate c5:
 	spi_select();
 	spi_write(0b10101010);
-	cal_pres_c5 = ((uint16_t)spi_read()<<8);
+	cal_pres_c5 = ((uint16_t)spi_read())<<8;
 	cal_pres_c5 += ((uint16_t)spi_read());
 	spi_deselect();
-	printf("c5: %lu \n",cal_pres_c5);
+	printf("c5: %u \n",cal_pres_c5);
 	
 	//calibrate c6:
 	spi_select();
 	spi_write(0b10101100);
-	cal_pres_c6 = ((uint16_t)spi_read()<<8);
+	cal_pres_c6 = ((uint16_t)spi_read())<<8;
 	cal_pres_c6 += ((uint16_t)spi_read());
 	spi_deselect();
-	printf("c6: %lu \n ",cal_pres_c6);
+	printf("c6: %u \n ",cal_pres_c6);
 	printf("Cleared Var\n");
  }
  void spi_init(void)

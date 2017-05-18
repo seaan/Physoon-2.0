@@ -26,7 +26,8 @@
 	ADCA.CH0.CTRL |= 0b10000000; //Start conversion
 	printf("gee\n");
 	
-	while(ADCA.CH0.INTFLAGS == 0); //do nothing until conversion is done
+	delay_ms(100);
+	(ADCA.CH0.INTFLAGS == 0); //do nothing until conversion is done
 	printf("lee\n");
 	uint16_t adcReading = ADCA.CH0.RES;
 	printf("kee\n");
