@@ -59,8 +59,8 @@
  * This function returns the device serial stored in the device.
  *
  * \note This function is modifying the NVM.CMD register.
- *       If the application are using program space access in Enable_global_interrupt
- *       (__flash pointers in IAR EW or pgm_read_byte in GCC) Enable_global_interrupt
+ *       If the application are using program space access in interrupts
+ *       (__flash pointers in IAR EW or pgm_read_byte in GCC) interrupts
  *       needs to be disabled when running EEPROM access functions. If not
  *       the program space reads will be corrupted.
  *
@@ -458,7 +458,7 @@ void nvm_eeprom_erase_all(void)
  *
  * \note Should only be called from the CRC module. The function saves and
  *       restores the NVM.CMD register, but if this
- *       function is called from an interrupt, Enable_global_interrupt must be disabled
+ *       function is called from an interrupt, interrupts must be disabled
  *       before this function is called.
  *
  * \param start_addr  end byte address

@@ -52,7 +52,7 @@
 #  include "interrupt/interrupt_avr8.h"
 #elif UC3
 #  include "interrupt/interrupt_avr32.h"
-#elif SAM
+#elif SAM || SAMB
 #  include "interrupt/interrupt_sam_nvic.h"
 #else
 #  error Unsupported device.
@@ -61,7 +61,7 @@
 /**
  * \defgroup interrupt_group Global interrupt management
  *
- * This is a driver for global enabling and disabling of Enable_global_interrupt.
+ * This is a driver for global enabling and disabling of interrupts.
  *
  * @{
  */
@@ -87,12 +87,12 @@
 
 /**
  * \def cpu_irq_enable
- * \brief Enable Enable_global_interrupt globally
+ * \brief Enable interrupts globally
  */
 
 /**
  * \def cpu_irq_disable
- * \brief Disable Enable_global_interrupt globally
+ * \brief Disable interrupts globally
  */
 
 /**
@@ -103,7 +103,7 @@
  *
  * \return Current state of interrupt flags.
  *
- * \note This function leaves Enable_global_interrupt disabled.
+ * \note This function leaves interrupts disabled.
  */
 
 /**
@@ -117,18 +117,18 @@
 
 /**
  * \fn bool cpu_irq_is_enabled_flags(irqflags_t flags)
- * \brief Check if Enable_global_interrupt are globally enabled in supplied flags
+ * \brief Check if interrupts are globally enabled in supplied flags
  *
  * \param flags Currents state of interrupt flags.
  *
- * \return True if Enable_global_interrupt are enabled.
+ * \return True if interrupts are enabled.
  */
 
 /**
  * \def cpu_irq_is_enabled
- * \brief Check if Enable_global_interrupt are globally enabled
+ * \brief Check if interrupts are globally enabled
  *
- * \return True if Enable_global_interrupt are enabled.
+ * \return True if interrupts are enabled.
  */
 //@}
 

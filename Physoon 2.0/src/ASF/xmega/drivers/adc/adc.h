@@ -64,7 +64,7 @@ extern "C" {
 #   ifdef __ICCAVR__
 #     define SCAN   reserved_0x06
 #   else
-#     define SCAN   reserved_0x06
+#     define SCAN   reserved_0x6
 #   endif
 # endif
 #endif
@@ -137,7 +137,7 @@ typedef enum ADC_CH_MUXNEG_MODE11_enum
  * datasheet for details on which features are available for a specific device.
  *
  * \note The functions for creating/changing configurations are not protected
- * against Enable_global_interrupt. The functions that read from or write to the ADC's
+ * against interrupts. The functions that read from or write to the ADC's
  * registers are protected unless otherwise noted.
  *
  * \section dependencies Dependencies
@@ -145,7 +145,7 @@ typedef enum ADC_CH_MUXNEG_MODE11_enum
  * - \ref sysclk_group for peripheral clock control.
  * - \ref sleepmgr_group for setting allowed sleep mode.
  * - \ref nvm_group for getting factory calibration data.
- * - \ref interrupt_group for ISR definition and disabling Enable_global_interrupt during
+ * - \ref interrupt_group for ISR definition and disabling interrupts during
  * critical code sections.
  * @{
  */
@@ -412,9 +412,9 @@ __always_inline static  ADC_CH_t *adc_get_channel(
 
 /**
  * \def CONFIG_ADC_CALLBACK_ENABLE
- * \brief Configuration symbol to enable callback on ADC Enable_global_interrupt
+ * \brief Configuration symbol to enable callback on ADC interrupts
  *
- * Define this symbol in \ref conf_adc.h to enable callbacks on ADC Enable_global_interrupt.
+ * Define this symbol in \ref conf_adc.h to enable callbacks on ADC interrupts.
  * A function of type \ref adc_callback_t must be defined by the user, and the
  * driver be configured to use it with \ref adc_set_callback.
  */
@@ -499,9 +499,9 @@ static inline void adc_start_conversion(ADC_t *adc, uint8_t ch_mask)
  *
  * \return Latest conversion result of ADC channel. Signedness does not matter.
  *
- * \note This macro does not protect the 16-bit read from Enable_global_interrupt. If an
+ * \note This macro does not protect the 16-bit read from interrupts. If an
  * interrupt may do a 16-bit read or write to the ADC while this macro is
- * executing, Enable_global_interrupt \a must be temporarily disabled to avoid corruption of
+ * executing, interrupts \a must be temporarily disabled to avoid corruption of
  * the read.
  */
 #define adc_get_result(adc, ch_mask)    (adc_get_channel(adc, ch_mask)->RES)
@@ -660,9 +660,9 @@ static inline void adc_flush(ADC_t *adc)
  *
  * \return Current compare value of the ADC. Signedness does not matter.
  *
- * \note This macro does not protect the 16-bit read from Enable_global_interrupt. If an
+ * \note This macro does not protect the 16-bit read from interrupts. If an
  * interrupt may do a 16-bit read or write to the ADC while this macro is
- * executing, Enable_global_interrupt \a must be temporarily disabled to avoid corruption of
+ * executing, interrupts \a must be temporarily disabled to avoid corruption of
  * the read.
  */
 #define adc_get_compare_value(adc)    ((adc)->CMP)
@@ -739,9 +739,9 @@ static inline void adc_set_sample_value(ADC_t *adc, uint8_t val)
  *
  * \return Current sample time value of the ADC.
  *
- * \note This macro does not protect the 8-bit read from Enable_global_interrupt. If an
+ * \note This macro does not protect the 8-bit read from interrupts. If an
  * interrupt may do a 8-bit read or write to the ADC while this macro is
- * executing, Enable_global_interrupt \a must be temporarily disabled to avoid corruption of
+ * executing, interrupts \a must be temporarily disabled to avoid corruption of
  * the read.
  */
 static inline uint8_t adc_get_sample_value(ADC_t *adc)
@@ -1529,7 +1529,7 @@ static inline void adcch_set_interrupt_mode(struct adc_channel_config *ch_conf,
 }
 
 /**
- * \brief Enable Enable_global_interrupt on ADC channel
+ * \brief Enable interrupts on ADC channel
  *
  * \param ch_conf Pointer to ADC channel configuration.
  */
@@ -1540,7 +1540,7 @@ static inline void adcch_enable_interrupt(struct adc_channel_config *ch_conf)
 }
 
 /**
- * \brief Disable Enable_global_interrupt on ADC channel
+ * \brief Disable interrupts on ADC channel
  *
  * \param ch_conf Pointer to ADC channel configuration.
  */
@@ -1757,7 +1757,7 @@ static inline void adcch_disable_oversampling(struct adc_channel_config *ch_conf
  * - 12-bit resolution
  * - internal 1V reference
  * - manual conversion triggering
- * - polled operation (no Enable_global_interrupt)
+ * - polled operation (no interrupts)
  *
  * Completed conversions are detected by waiting for the relevant interrupt flag
  * to get set. The ADC result is then stored in a local variable.
@@ -1888,7 +1888,7 @@ static inline void adcch_disable_oversampling(struct adc_channel_config *ch_conf
  * -# Wait for the channel's interrupt flag to get set, indicating a completed
  * conversion:
  *     - \code adc_wait_for_interrupt_flag(&MY_ADC, MY_ADC_CH); \endcode
- *     \note The interrupt flags are set even if the Enable_global_interrupt are disabled.
+ *     \note The interrupt flags are set even if the interrupts are disabled.
  * Further, this function will clear the interrupt flag after it has been set,
  * so we do not need to clear it manually.
  * -# Read out the result of the ADC channel:
@@ -2047,7 +2047,7 @@ static inline void adcch_disable_oversampling(struct adc_channel_config *ch_conf
  *     - \code adc_set_callback(&MY_ADC, &adc_handler); \endcode
  * -# Write the configuration to the ADC:
  *     - \code adc_write_configuration(&MY_ADC, &adc_conf); \endcode
- * -# Enable Enable_global_interrupt for the ADC channels:
+ * -# Enable interrupts for the ADC channels:
  *     - \code adcch_enable_interrupt(&adcch_conf); \endcode
  * -# Set up single-ended input from pin 0 on port A, then write the config to
  * the first channel (0):
@@ -2064,13 +2064,13 @@ static inline void adcch_disable_oversampling(struct adc_channel_config *ch_conf
  *     \note Not all input and gain combinations are valid. Refer to
  * \ref adcch_set_input() for documentation on the restrictions.
  * -# Initialize the clock system, the ADC, and the PMIC since we will be using
- * Enable_global_interrupt:
+ * interrupts:
  *     - \code
 	sysclk_init();
 	adc_init();
 	pmic_init();
 \endcode
- *     \note The call to \ref pmic_init() does not enable Enable_global_interrupt globally,
+ *     \note The call to \ref pmic_init() does not enable interrupts globally,
  * which must be done explicitly with \ref cpu_irq_enable().
  *
  * \section adc_use_case_1_usage Usage steps
@@ -2087,14 +2087,14 @@ static inline void adcch_disable_oversampling(struct adc_channel_config *ch_conf
 \endcode
  *
  * \subsection adc_use_case_1_usage_flow Workflow
- * -# Enable Enable_global_interrupt globally to allow the ADC Enable_global_interrupt to be handled:
+ * -# Enable interrupts globally to allow the ADC interrupts to be handled:
  *     - \code cpu_irq_enable(); \endcode
  * -# Enable the ADC to start conversions:
  *     - \code adc_enable(&MY_ADC); \endcode
  *     \note When configured for free-running conversions, the ADC will start
  * doing conversions as soon as it is enabled, so we do not need to do it
  * manually.
- * -# Enter a busy-loop while Enable_global_interrupt handle the ADC results:
+ * -# Enter a busy-loop while interrupts handle the ADC results:
  *     - \code
 	do {
 	} while (true);

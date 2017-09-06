@@ -83,9 +83,9 @@
 #  define IOPORT_PORTM  11
 #endif
 
-//#if XMEGA_A1 || XMEGA_A1U
+#if XMEGA_A1 || XMEGA_A1U
 #  define IOPORT_PORTQ  14
-//#endif
+#endif
 
 #define IOPORT_PORTR    15
 /** @} */

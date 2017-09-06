@@ -101,7 +101,7 @@
 	lds r24, NVM_CMD      ; Store NVM command register (r24 is no longer needed)
 	sts NVM_CMD, r20      ; Load prepared command into NVM Command register.
 	ldi r23, CCP_SPM_gc   ; Prepare Protect SPM signature (r23 is no longer needed)
-	sts CCP, r23          ; Enable SPM operation (this disables Enable_global_interrupt for 4 cycles).
+	sts CCP, r23          ; Enable SPM operation (this disables interrupts for 4 cycles).
 	spm                   ; Self-program.
 	sts NVM_CMD, r24      ; Restore NVM command register
 	out RAMPZ, r25        ; Restore RAMPZ register.
@@ -117,7 +117,7 @@
 	lds r18, NVM_CMD      ; Store NVM command register (r18 is no longer needed)
 	sts NVM_CMD, r20      ; Load prepared command into NVM Command register.
 	ldi r19, CCP_SPM_gc   ; Prepare Protect SPM signature (r19 is no longer needed)
-	sts CCP, r19          ; Enable SPM operation (this disables Enable_global_interrupt for 4 cycles).
+	sts CCP, r19          ; Enable SPM operation (this disables interrupts for 4 cycles).
 	spm                   ; Self-program.
 	sts NVM_CMD, r18      ; Restore NVM command register
 	out RAMPZ, r19        ; Restore RAMPZ register.

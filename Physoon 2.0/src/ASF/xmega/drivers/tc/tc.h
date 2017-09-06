@@ -72,7 +72,7 @@ extern "C" {
  * This driver depends on the following modules:
  * - \ref sysclk_group for peripheral clock control.
  * - \ref sleepmgr_group for setting allowed sleep mode.
- * - \ref interrupt_group for ISR definition and disabling Enable_global_interrupt during
+ * - \ref interrupt_group for ISR definition and disabling interrupts during
  * critical code sections.
  * @{
  */
@@ -175,7 +175,7 @@ void tc_disable(volatile void *tc);
 /**
  * \ingroup tc_group
  * \defgroup tc_interrupt_group Timer Counter (TC) interrupt management
- * This group provides functions to configure TC module Enable_global_interrupt
+ * This group provides functions to configure TC module interrupts
  *
  *
  * @{
@@ -188,7 +188,7 @@ void tc_disable(volatile void *tc);
  * driver will only clear the interrupt flags.
  *
  * \note Once a callback function is set, the interrupt priority must be set
- *       via \ref tc_set_overflow_interrupt_level() for Enable_global_interrupt to be
+ *       via \ref tc_set_overflow_interrupt_level() for interrupts to be
  *       generated each time the timer overflows.
  *
  * \param tc Pointer to the Timer Counter (TC) base address
@@ -205,7 +205,7 @@ void tc_set_overflow_interrupt_callback(volatile void *tc,
  * driver will only clear the interrupt flags.
  *
  * \note Once a callback function is set, the interrupt priority must be set
- *       via \ref tc_set_error_interrupt_level() for Enable_global_interrupt to be
+ *       via \ref tc_set_error_interrupt_level() for interrupts to be
  *       generated each time a timer error occurs.
  *
  * \param tc Pointer to the Timer Counter (TC) base address
@@ -221,7 +221,7 @@ void tc_set_error_interrupt_callback(volatile void *tc, tc_callback_t callback);
  * driver will only clear the interrupt flags.
  *
  * \note Once a callback function is set, the interrupt priority must be set
- *       via \ref tc_set_cca_interrupt_level() for Enable_global_interrupt to be generated
+ *       via \ref tc_set_cca_interrupt_level() for interrupts to be generated
  *       each time the timer channel A compare matches the current timer count.
  *
  * \param tc Pointer to the Timer Counter (TC) base address
@@ -237,7 +237,7 @@ void tc_set_cca_interrupt_callback(volatile void *tc, tc_callback_t callback);
  * driver will only clear the interrupt flags.
  *
  * \note Once a callback function is set, the interrupt priority must be set
- *       via \ref tc_set_ccb_interrupt_level() for Enable_global_interrupt to be generated
+ *       via \ref tc_set_ccb_interrupt_level() for interrupts to be generated
  *       each time the timer channel B compare matches the current timer count.
  *
  * \param tc Pointer to the Timer Counter (TC) base address
@@ -253,7 +253,7 @@ void tc_set_ccb_interrupt_callback(volatile void *tc, tc_callback_t callback);
  * driver will only clear the interrupt flags.
  *
  * \note Once a callback function is set, the interrupt priority must be set
- *       via \ref tc_set_ccc_interrupt_level() for Enable_global_interrupt to be generated
+ *       via \ref tc_set_ccc_interrupt_level() for interrupts to be generated
  *       each time the timer channel C compare matches the current timer count.
  *
  * \param tc Pointer to the Timer Counter (TC) base address
@@ -269,7 +269,7 @@ void tc_set_ccc_interrupt_callback(volatile void *tc, tc_callback_t callback);
  * driver will only clear the interrupt flags.
  *
  * \note Once a callback function is set, the interrupt priority must be set
- *       via \ref tc_set_ccd_interrupt_level() for Enable_global_interrupt to be generated
+ *       via \ref tc_set_ccd_interrupt_level() for interrupts to be generated
  *       each time the timer channel D compare matches the current timer count.
  *
  * \param tc Pointer to the Timer Counter (TC) base address
@@ -1448,7 +1448,7 @@ static inline void tc_hires_set_mode(HIRES_t * hires, HIRES_HREN_t hi_res_mode)
  *          overflow and reset when this value is reached.
  * -# Set the overflow interrupt level
  *   - \code tc_set_overflow_interrupt_level(&TCC0, TC_INT_LVL_LO); \endcode
- * -# Enable Enable_global_interrupt:
+ * -# Enable interrupts:
  *  - \code cpu_irq_enable(); \endcode
  * -# Set the clock source
  *  - \code tc_write_clock_source(&TCC0, TC_CLKSEL_DIV1_gc); \endcode
@@ -1462,10 +1462,10 @@ static inline void tc_hires_set_mode(HIRES_t * hires, HIRES_HREN_t hi_res_mode)
  *
  * \section xmega_tc_qs_cc Timer/counter compare match (interrupt based)
  *
- * This use case will prepare a timer to trigger two independent Enable_global_interrupt
+ * This use case will prepare a timer to trigger two independent interrupts
  * when it reaches two different compare values. The period of the timer
  * is customizable and the two compare matches will be handled by two separate
- * Enable_global_interrupt implemented in call back functions.
+ * interrupts implemented in call back functions.
  *
  * We will setup the timer in this mode:
  * - Normal WGM mode - incrementing timer
@@ -1524,7 +1524,7 @@ static inline void tc_hires_set_mode(HIRES_t * hires, HIRES_HREN_t hi_res_mode)
  *  - \code pmic_init(); \endcode
  * -# Enable the clock system:
  *  - \code sysclk_init(); \endcode
- * -# Enable Enable_global_interrupt:
+ * -# Enable interrupts:
  *  - \code cpu_irq_enable(); \endcode
  * -#  Enable timer/counter TCC0
  *  - \code tc_enable(&TCC0); \endcode

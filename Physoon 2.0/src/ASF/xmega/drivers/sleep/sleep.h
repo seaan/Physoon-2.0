@@ -146,7 +146,7 @@ static inline void sleep_set_mode(enum SLEEP_SMODE_enum mode)
  *  - \attention Make sure to enable global interrupt and the interrupt you
  *  plan to use as wake-up source for your device, do also pay special
  *  attention to what wake-up sources are available for the different sleep
- *  modes. Failing to enable Enable_global_interrupt may result in indefinite sleep until
+ *  modes. Failing to enable interrupts may result in indefinite sleep until
  *  power is cycled!
  * -# When the device is woken from sleep it will execute the interrupt handler
  *  related to the wakeup-source (interrupt source) and continue on the next line
