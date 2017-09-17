@@ -457,7 +457,8 @@ static inline void ac_set_low_power_mode(struct ac_config *config)
  * \attention This step is important, as uninitialized values in the struct
  *            may cause strange and unwanted behavior.
  *
- * First, we set the AC mode for the ACA comparator to single operation.
+ * 
+, we set the AC mode for the ACA comparator to single operation.
  * \code
 	ac_set_mode(&aca_config, AC_MODE_SINGLE);
 \endcode
@@ -497,7 +498,7 @@ static inline void ac_set_low_power_mode(struct ac_config *config)
 	 ac_enable(&ACA, 0);
 \endcode
  *
- * Finally, we must enable Enable_global_interrupt:
+ * Finally, we must enable interrupts:
  * \code
 	cpu_irq_enable();
 \endcode

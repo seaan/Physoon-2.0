@@ -82,7 +82,7 @@ extern "C" {
  *
  * It is based on the use of lock counting for the individual sleep modes, and
  * will put the device to sleep in the shallowest sleep mode that has a non-zero
- * lock count. The driver/services/application can change these counts by use
+ * lock count. The drivers/services/application can change these counts by use
  * of \ref sleepmgr_lock_mode and \ref sleepmgr_unlock_mode.
  * Refer to \ref sleepmgr_mode for a list of the sleep modes available for
  * locking, and the device datasheet for information on their effect.
@@ -237,7 +237,7 @@ static inline enum sleepmgr_mode sleepmgr_get_sleep_mode(void)
  * mode, until the first non-zero lock count is found. The device is then put to
  * sleep in the sleep mode that corresponds to the lock.
  *
- * \note This function enables Enable_global_interrupt before going to sleep, and will leave
+ * \note This function enables interrupts before going to sleep, and will leave
  * them enabled upon return. This also applies if sleep is skipped due to ACTIVE
  * mode being locked.
  */
@@ -256,7 +256,7 @@ static inline void sleepmgr_enter_sleep(void)
 		cpu_irq_enable();
 		return;
 	}
-	// Enter the deepest allowable sleep mode with Enable_global_interrupt enabled
+	// Enter the deepest allowable sleep mode with interrupts enabled
 	sleepmgr_sleep(sleep_mode);
 #else
 	cpu_irq_enable();

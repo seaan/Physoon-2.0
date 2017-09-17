@@ -6,7 +6,7 @@ src/main.d src/main.o: ../src/main.c ../src/asf.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
- C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.0.36\include/avr/iox128a1.h \
+ C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.0.36\include/avr/iox32a4u.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\portpins.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\common.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h \
@@ -40,13 +40,13 @@ src/main.d src/main.o: ../src/main.c ../src/asf.h \
  ../src/ASF/common/services/clock/sysclk.h ../src/config/conf_clock.h \
  ../src/ASF/common/services/clock/xmega/sysclk.h \
  ../src/ASF/common/boards/board.h \
- ../src/ASF/xmega/boards/xmega_a1_xplained/xmega_a1_xplained.h \
+ ../src/ASF/xmega/boards/stk600/rc044x/stk600_rc044x.h \
  ../src/ASF/common/services/clock/osc.h \
  ../src/ASF/common/services/clock/xmega/osc.h \
  ../src/ASF/common/services/clock/pll.h \
  ../src/ASF/common/services/clock/xmega/pll.h \
  ../src/ASF/xmega/drivers/cpu/xmega_reset_cause.h \
- ../src/ASF/xmega/drivers/cpu/ccp.h \
+ ../src/ASF/xmega/drivers/cpu/ccp.h ../src/ASF/xmega/drivers/dac/dac.h \
  ../src/ASF/common/services/delay/delay.h \
  ../src/ASF/common/services/delay/xmega/cycle_counter.h \
  ../src/ASF/common/services/gpio/gpio.h \
@@ -55,9 +55,12 @@ src/main.d src/main.o: ../src/main.c ../src/asf.h \
  ../src/ASF/common/services/ioport/xmega/ioport.h \
  ../src/ASF/common/services/ioport/xmega/ioport_compat.h \
  ../src/ASF/common/services/ioport/xmega/../ioport.h \
+ ../src/ASF/xmega/services/pwm/pwm.h ../src/ASF/xmega/drivers/tc/tc.h \
+ ../src/ASF/xmega/drivers/rtc/rtc.h ../src/config/conf_rtc.h \
  ../src/ASF/xmega/drivers/spi/spi.h \
  ../src/ASF/common/services/spi/xmega_spi/spi_master.h \
  ../src/config/conf_spi_master.h \
+ ../src/ASF/xmega/boards/stk600/rc044x/led.h \
  ../src/ASF/common/services/sleepmgr/xmega/sleepmgr.h \
  ../src/ASF/common/utils/stdio/stdio_serial/stdio_serial.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdio.h \
@@ -65,16 +68,29 @@ src/main.d src/main.o: ../src/main.c ../src/asf.h \
  ../src/ASF/common/services/serial/serial.h \
  ../src/ASF/common/services/serial/xmega_usart/usart_serial.h \
  ../src/ASF/xmega/drivers/usart/usart.h ../src/config/conf_usart_serial.h \
+ ../src/ASF/common/services/twi/twi_master.h \
+ ../src/ASF/common/services/twi/xmega_twi/twi_master.h \
  ../src/ASF/xmega/drivers/twi/twim.h ../src/config/conf_twim.h \
  ../src/ASF/xmega/drivers/twi/twi_common.h \
+ ../src/ASF/common/services/twi/twi_slave.h \
+ ../src/ASF/common/services/twi/xmega_twi/twi_slave.h \
  ../src/ASF/xmega/drivers/twi/twis.h \
- ../src/ASF/xmega/boards/xmega_a1_xplained/led.h ../src/driver/driver.h \
- ../src/driver/altitude/altitude.h ../src/driver/data/data.h \
- ../src/driver/LED/LEDs.h ../src/driver/pressure/Pressure.h \
- ../src/driver/temperature/Temperature.h ../src/driver/gps/gps.h \
- ../src/driver/gps/stringring.h \
+ ../src/ASF/common/services/twi/xmega_twi/twi_master.h \
+ ../src/ASF/common/services/twi/xmega_twi/twi_slave.h \
+ ../src/drivers/driver.h ../src/drivers/altitude/altitude.h \
+ ../src/drivers/aprs/aprs.h ../src/drivers/data/data.h \
+ ../src/drivers/driver.h ../src/drivers/LED/LEDs.h \
+ ../src/drivers/magnetometer/magnetometer.h \
+ ../src/drivers/temperature/Temperature.h ../src/drivers/gps/gpsParser.h \
+ ../src/drivers/gps/ctl_stringring.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\4.9.2\include\stdint-gcc.h \
- ../src/driver/gps/stringring.h ../src/driver/gps/stringring.h \
+ ../src/drivers/gps/conf_stringring.h ../src/drivers/gps/ctl_stringring.h \
+ ../src/drivers/gps/conf_stringring.h ../src/drivers/MS5607/MS5607.h \
+ ../src/drivers/MS5607/SPI.h ../src/drivers/MPU9250/imu.h \
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
+ ../src/drivers/MPU9250/mpu9250.h ../src/drivers/MPU9250/MahonyAHRS.h \
+ ../src/drivers/MPU9250/mpu9250.h \
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\atomic.h
 
 ../src/asf.h:
@@ -93,7 +109,7 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h:
 
-C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.0.36\include/avr/iox128a1.h:
+C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.0.36\include/avr/iox32a4u.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\portpins.h:
 
@@ -169,7 +185,7 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ../src/ASF/common/boards/board.h:
 
-../src/ASF/xmega/boards/xmega_a1_xplained/xmega_a1_xplained.h:
+../src/ASF/xmega/boards/stk600/rc044x/stk600_rc044x.h:
 
 ../src/ASF/common/services/clock/osc.h:
 
@@ -182,6 +198,8 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../src/ASF/xmega/drivers/cpu/xmega_reset_cause.h:
 
 ../src/ASF/xmega/drivers/cpu/ccp.h:
+
+../src/ASF/xmega/drivers/dac/dac.h:
 
 ../src/ASF/common/services/delay/delay.h:
 
@@ -199,11 +217,21 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ../src/ASF/common/services/ioport/xmega/../ioport.h:
 
+../src/ASF/xmega/services/pwm/pwm.h:
+
+../src/ASF/xmega/drivers/tc/tc.h:
+
+../src/ASF/xmega/drivers/rtc/rtc.h:
+
+../src/config/conf_rtc.h:
+
 ../src/ASF/xmega/drivers/spi/spi.h:
 
 ../src/ASF/common/services/spi/xmega_spi/spi_master.h:
 
 ../src/config/conf_spi_master.h:
+
+../src/ASF/xmega/boards/stk600/rc044x/led.h:
 
 ../src/ASF/common/services/sleepmgr/xmega/sleepmgr.h:
 
@@ -221,36 +249,68 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\
 
 ../src/config/conf_usart_serial.h:
 
+../src/ASF/common/services/twi/twi_master.h:
+
+../src/ASF/common/services/twi/xmega_twi/twi_master.h:
+
 ../src/ASF/xmega/drivers/twi/twim.h:
 
 ../src/config/conf_twim.h:
 
 ../src/ASF/xmega/drivers/twi/twi_common.h:
 
+../src/ASF/common/services/twi/twi_slave.h:
+
+../src/ASF/common/services/twi/xmega_twi/twi_slave.h:
+
 ../src/ASF/xmega/drivers/twi/twis.h:
 
-../src/ASF/xmega/boards/xmega_a1_xplained/led.h:
+../src/ASF/common/services/twi/xmega_twi/twi_master.h:
 
-../src/driver/driver.h:
+../src/ASF/common/services/twi/xmega_twi/twi_slave.h:
 
-../src/driver/altitude/altitude.h:
+../src/drivers/driver.h:
 
-../src/driver/data/data.h:
+../src/drivers/altitude/altitude.h:
 
-../src/driver/LED/LEDs.h:
+../src/drivers/aprs/aprs.h:
 
-../src/driver/pressure/Pressure.h:
+../src/drivers/data/data.h:
 
-../src/driver/temperature/Temperature.h:
+../src/drivers/driver.h:
 
-../src/driver/gps/gps.h:
+../src/drivers/LED/LEDs.h:
 
-../src/driver/gps/stringring.h:
+../src/drivers/magnetometer/magnetometer.h:
+
+../src/drivers/temperature/Temperature.h:
+
+../src/drivers/gps/gpsParser.h:
+
+../src/drivers/gps/ctl_stringring.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\4.9.2\include\stdint-gcc.h:
 
-../src/driver/gps/stringring.h:
+../src/drivers/gps/conf_stringring.h:
 
-../src/driver/gps/stringring.h:
+../src/drivers/gps/ctl_stringring.h:
+
+../src/drivers/gps/conf_stringring.h:
+
+../src/drivers/MS5607/MS5607.h:
+
+../src/drivers/MS5607/SPI.h:
+
+../src/drivers/MPU9250/imu.h:
+
+c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:
+
+../src/drivers/MPU9250/mpu9250.h:
+
+../src/drivers/MPU9250/MahonyAHRS.h:
+
+../src/drivers/MPU9250/mpu9250.h:
+
+c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\atomic.h:

@@ -62,6 +62,9 @@
 #include <ccp.h>
 #include <xmega_reset_cause.h>
 
+// From module: DAC - Digital to Analog Converter
+#include <dac.h>
+
 // From module: Delay routines
 #include <delay.h>
 
@@ -83,8 +86,14 @@
 // From module: PMIC - Programmable Multi-level Interrupt Controller
 #include <pmic.h>
 
+// From module: PWM service using timer/counter
+#include <pwm.h>
+
 // From module: Part identification macros
 #include <parts.h>
+
+// From module: RTC - Real Time Counter
+#include <rtc.h>
 
 // From module: SPI - Serial Peripheral Interface
 #include <spi.h>
@@ -92,6 +101,9 @@
 // From module: SPI - XMEGA implementation
 #include <spi_master.h>
 #include <spi_master.h>
+
+// From module: STK600-RC044X LED support enabled
+#include <led.h>
 
 // From module: Sleep Controller driver
 #include <sleep.h>
@@ -103,8 +115,17 @@
 // From module: Standard serial I/O (stdio) - XMEGA implementation
 #include <stdio_serial.h>
 
-// From module: System Clock Control - XMEGA A1/A3/A3B/A4/D/E implementation
+// From module: System Clock Control - XMEGA A1U/A3U/A3BU/A4U/B/C implementation
 #include <sysclk.h>
+
+// From module: TC - Timer Counter
+#include <tc.h>
+
+// From module: TWI - Two-Wire Interface - XMEGA implementation
+#include <twi_master.h>
+#include <twi_slave.h>
+#include <xmega_twi/twi_master.h>
+#include <xmega_twi/twi_slave.h>
 
 // From module: TWI - Two-wire Master and Slave Interface
 #include <twim.h>
@@ -119,8 +140,5 @@
 // From module: XMEGA compiler driver
 #include <compiler.h>
 #include <status_codes.h>
-
-// From module: XMEGA-A1 Xplained LED support enabled
-#include <led.h>
 
 #endif // ASF_H
